@@ -10,6 +10,9 @@ obj-$(CONFIG_DVB_MPQ) += dvb/
 ifeq ($(CONFIG_WT88047_CAMERA),y)
 obj-$(CONFIG_MSMB_CAMERA) += camera_wt88047_v2/
 else
+ifeq ($(CONFIG_MLTE5_CAMERA),y)
+obj-$(CONFIG_MSMB_CAMERA) += camera_mlte5_v2/
+else
 obj-$(CONFIG_MSMB_CAMERA) += camera_v2/
 endif
 obj-$(CONFIG_MSM_VPU) += vpu/

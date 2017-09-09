@@ -15,4 +15,5 @@ obj-$(CONFIG_MSMB_CAMERA) += camera_mlte5_v2/
 else
 obj-$(CONFIG_MSMB_CAMERA) += camera_v2/
 endif
+endif
 obj-$(CONFIG_MSM_VPU) += vpu/

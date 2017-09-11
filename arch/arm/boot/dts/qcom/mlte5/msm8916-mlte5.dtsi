@@ -12,7 +12,7 @@
 
 #include "msm8916-qrd.dtsi"
 #include "dsi-panel-hx8394a-720p-video.dtsi"
-#include "msm8916-camera-sensor-qrd-skui.dtsi"
+#include "msm8916-camera-sensor-mlte5.dtsi"
 
 / {
 	memory {
@@ -109,12 +109,12 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&gpio_led_off>;
 
-		red {
-			gpios = <&msm_gpio 22 0>;
-			label = "red";
-			linux,default-trigger = "none";
-			default-state = "off";
-			retain-state-suspended;
+	red {
+		gpios = <&msm_gpio 22 0>;
+		label = "red";
+		linux,default-trigger = "none";
+		default-state = "off";
+		retain-state-suspended;
 		};
 	};
 };
@@ -195,6 +195,7 @@
 		bma,sensors-cycle-threshold-y = <0x640>;
 		bma,sensors-cycle-threshold-z = <0x4000>;
 	};
+
 		ltr@23 { /* Ambient light and proximity sensor */
 		compatible = "ltr,ltr559";
 		reg = <0x23>;
@@ -207,11 +208,10 @@
 		vio-supply = <&pm8916_l6>;
 		liteon,intr = <113>;
 		ltr,irq-gpio = <&msm_gpio 113 0x2002>;
-		ltr,ps-threshold = <120>;
-		ltr,ps-hysteresis-threshold = <80>;
+		ltr,ps-threshold = <45>;
+		ltr,ps-hysteresis-threshold = <30>;
 		ltr,als-polling-time = <200>;
 	};
-
 
 	memsic@30 { /* Magnetic field sensor */
 		compatible = "memsic,mmc3416x";
@@ -250,7 +250,8 @@
 	mtp_batterydata: qcom,battery-data {
 		qcom,rpull-up-kohm = <100>;
 		qcom,vref-batt-therm = <1800000>;
-#include "batterydata-qrd-skut-4v35-2300mah.dtsi"
+
+#include "batterydata-mlte5-4v35-2300mah.dtsi"
 
 	};
 };

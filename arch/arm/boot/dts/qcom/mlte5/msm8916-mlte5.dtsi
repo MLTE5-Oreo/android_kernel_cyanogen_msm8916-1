@@ -196,7 +196,7 @@
 		bma,sensors-cycle-threshold-z = <0x4000>;
 	};
 
-		ltr@23 { /* Ambient light and proximity sensor */
+	ltr@23 { /* Ambient light and proximity sensor */
 		compatible = "ltr,ltr559";
 		reg = <0x23>;
 		pinctrl-names = "default","sleep";
@@ -218,7 +218,7 @@
 		reg = <0x30>;
 		vdd-supply = <&pm8916_l17>;
 		vio-supply = <&pm8916_l6>;
-		memsic,dir = "reverse-x-axis-forward";
+		memsic,dir = "reverse-x-axis-leftward";
 		memsic,auto-report;
 	};
 };

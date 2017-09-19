@@ -248,6 +248,7 @@ static struct sensors_classdev sensors_light_cdev = {
 	.delay_msec = 100,
 	.sensors_enable = NULL,
 	.sensors_poll_delay = NULL,
+	.flags = 2,
 };
 
 static struct sensors_classdev sensors_proximity_cdev = {
@@ -266,6 +267,7 @@ static struct sensors_classdev sensors_proximity_cdev = {
 	.delay_msec = 100,
 	.sensors_enable = NULL,
 	.sensors_poll_delay = NULL,
+	.flags = 3,
 };
 
 static int ltr559_ps_read(struct i2c_client *client)
@@ -1376,14 +1378,14 @@ int ltr559_probe(struct i2c_client *client, const struct i2c_device_id *id)
 	data->ps_cdev.sensors_enable = ltr559_ps_set_enable;
 	data->ps_cdev.sensors_poll_delay = NULL;
 
-	ret = sensors_classdev_register(&client->dev, &data->als_cdev);
+	ret = sensors_classdev_register(&data->input_dev_als->dev, &data->als_cdev);
 	if(ret) {
 		ret = -EROFS;
 		dev_err(&client->dev,"Unable to register to als sensor class\n");
 		goto exit_remove_sysfs_group;
 	}
 
-	ret = sensors_classdev_register(&client->dev, &data->ps_cdev);
+	ret = sensors_classdev_register(&data->input_dev_ps->dev, &data->ps_cdev);
 	if(ret) {
 		ret = -EROFS;
 		dev_err(&client->dev,"Unable to register to ps sensor class\n");
